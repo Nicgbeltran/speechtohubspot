@@ -25,7 +25,7 @@ async function openMicrophone(microphone, socket) {
     
     if (finalTranscript.trim().length > 0) {
       try {
-        const resp = await fetch("/saveTranscription", {
+        const resp = await fetch("/.netlify/functions/saveTranscription", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ smartTranscript: finalTranscript }),
@@ -68,7 +68,7 @@ async function start(socket) {
 }
 
 async function getApiKey() {
-  const response = await fetch("/key");
+  const response = await fetch("/.netlify/functions/key");
   const json = await response.json();
   return json.key;
 }
